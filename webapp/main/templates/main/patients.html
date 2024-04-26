@@ -1,0 +1,57 @@
+<!--  -->
+{% extends 'main/base.html' %} 
+{% block title %}Patients{% endblock %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+<h1>Patients</h1>
+{{ redirect_to_login_immediately }}
+{% for message in messages %}
+    <div class="message text-center alert alert-info {{ message.tags }}">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class="container mt-4">
+    <!-- <form method="POST" action="{% url 'search_patient' %}">
+        {% csrf_token %}
+        <input type="text" name="searched" placeholder="Enter Patient ID">
+        <button type="submit">Search</button>
+    </form> -->
+
+<!-- displays a search bar within a container 
+    for searching patients using a form when searching checks 
+    for authorized person through csrf token  -->
+    <form class="form-inline" method="POST" action="{% url 'search_patient' %}">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search for patient" aria-label="Search" name="searched">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+<!-- loops through patients model and lists id, first name, lastname, and age -->
+        {% for patient in patients %}
+        
+            <tr href="/patients/{{ patient.patient_id }}/">
+                    <td><a href="/patients/{{ patient.patient_id }}/">{{ patient.patient_id }}</a></td>
+                    <td>{{ patient.patient_fname }}</td>
+                    <td>{{ patient.patient_lname }}</td>
+                    <td>{{ patient.patient_age }}</td>
+            </tr>
+    
+        {% endfor %} 
+    </tbody>
+</table>
+
+{% endblock %}
+

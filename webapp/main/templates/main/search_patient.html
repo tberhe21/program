@@ -1,0 +1,27 @@
+<!-- displaying patients searched -->
+
+{% extends 'main/base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<center>
+    {% if searched %}
+        <h1>You searched for Patient: {{ searched }}</h1>
+        <br>
+        {% if patient %}
+            {% for p in patient %}
+            <a href="{% url 'patient_detail' pk=p.patient_id %}" class="btn btn-info">
+                {{ p.patient_fname }} {{ p.patient_lname }} (ID: {{ p.patient_id }}), Age: {{ p.patient_age }}
+            </a>
+            <br/>
+            {% endfor %}
+        {% else %}
+            <p>No matching patient found.</p>
+        {% endif %}
+    {% else %}
+        <h1>You forgot to search for a patient.</h1>
+    {% endif %}
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</center>
+{% endblock %}

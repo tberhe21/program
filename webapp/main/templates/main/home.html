@@ -1,0 +1,16 @@
+
+<!-- this is the homepage it inherits base template from base.html-->
+{% extends 'main/base.html' %} 
+{% block title %}Home Page{% endblock %} 
+{% block content %} 
+
+
+<h1>Health App Home Page</h1>
+
+<a href="{% url 'two_factor:profile'%}"
+class="float-right btn btn-link">Set up two-factor authentication</a>
+<br>
+<a href="{% url 'add_patient' %}">Add Patient Information</a>
+
+{% endblock %}
+

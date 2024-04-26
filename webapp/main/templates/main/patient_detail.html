@@ -1,0 +1,39 @@
+<!-- template displays a patient's details, 
+  including ID, name, demographics,
+  and lists their associated conditions 
+  and medications. -->
+{% extends 'main/base.html' %}
+{% block title %}Patient Details{% endblock %}
+{% block content %}
+  <h1>Patient Details</h1>
+  
+  <a href="{% url 'edit_patient' patient.patient_id %}">Edit Patient Information</a>
+
+ 
+  <div>
+    <p>ID: {{ patient.patient_id }}</p>
+    <p>First Name: {{ patient.patient_fname }}</p>
+    <p>Last Name: {{ patient.patient_lname }}</p>
+    <p>Age: {{ patient.patient_age }}</p>
+    <p>Gender: {{ patient.patient_gender }}</p>
+    <p>Address: {{ patient.patient_addr }}</p>
+    <p>Contact Number: {{ patient.patient_number }}</p>
+  </div>
+  <h2>Conditions</h2>
+  <ul>
+    {% for c in conditions %}
+      <li>{{ c.condition.condition_name }}</li>
+    {% endfor %}
+  </ul>
+  <h2>Medications</h2>
+  <ul>
+    {% for m in medications %}
+      <li>{{ m.medication.medication_name }}</li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,17 @@
+
+<!-- displays a form containing fields for patient information 
+    like name, address, etc. The form can be used 
+    for both creating new patients (adding) 
+    and editing existing patient information. -->
+{% extends 'main/base.html' %} 
+{% block title %}Add/Edit Patient Information{% endblock %}
+{% block content %}
+<!-- This includes a hidden form field containing a 
+    CSRF (Cross-Site Request Forgery) protection token. 
+    This helps prevent security vulnerabilities. -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

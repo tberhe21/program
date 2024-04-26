@@ -1,0 +1,25 @@
+<!-- this document displays any messages 
+  passed to the template like login errors, 
+  then displays a login form with username and 
+  password fields that is rendered using crispy_forms_tags, 
+  along with a link for creating a new account
+  and a submit button. -->
+
+{% extends "main/base.html" %}
+
+{% block title %}Login{% endblock %} 
+{% load crispy_forms_tags %} 
+
+{% block sub_content %}
+  {{ redirect_to_login_immediately }}
+  {% for message in messages %}
+    <div class="message text-center alert alert-info {{ message.tags }}">
+        {{ message }}
+    </div>
+  {% endfor %}
+  <form method="post">
+    {% csrf_token %}{{form|crispy}}
+    <p>Don't have an account? Create one <a href="/sign-up">Here</a>!</p>
+    <button type="submit" class="btn btn-success">Login</button>
+  </form>
+{% endblock %}
