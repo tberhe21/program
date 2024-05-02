@@ -30,8 +30,8 @@ Some of the key features of this application are:
 1. Clone the repository:
 
    ```bash
-   git clone <this reposi>
-   cd <repository_name>
+   git clone https://github.com/tberhe21/program.git
+   cd program
 
 2. Setting up the virtual environment
 
